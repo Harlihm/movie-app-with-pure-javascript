@@ -44,13 +44,11 @@ getMovies(API_URL)
         displayMovies(data.results);
 
         function displayMovies(movies) {
-            main.innerHTML=''
+            
             movies.forEach(
           (movie)=>{
               const {title,poster_path,overview}=movie
-              const moviesElement=document.createElement('div')
-                  moviesElement.classList.add('movieWrapper')
-                 moviesElement.innerHTML=`
+           let displayMovies =`
                      <div class="movie-posters">
                           <img class="mainimg" src="${IMAGE_PATH} + ${poster_path}" alt="${title}">
                      </div>
@@ -58,11 +56,10 @@ getMovies(API_URL)
                           <div class="movie-info">
                           <h3>${title}</h3>
                           <p class="sypnosis">${overview}</p>
-                          <span>${rating}</span>
+                          <span>${rating} xyz </span>
                           </div>
-                    </div>
-                                           `
-          main.appendChild(moviesElement)
+                    </div>            `
+             main.innerHTML=displayMovies
           
           }
             )
