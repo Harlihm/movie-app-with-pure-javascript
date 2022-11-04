@@ -23,7 +23,7 @@ const main=document.getElementById('main');
 
 
 
-const getData = async (url) => {
+const getMovies = async (url) => {
 const response = await fetch(url);
 if (response.status !== 200){
     throw new Error('cannot fetch the data')
@@ -36,12 +36,38 @@ return data;
 };
 
 
-getData(API_URL)
+getMovies(API_URL)
   .then ( 
     data => {
         console.log(data.results);
         console.log(displayMovies(data.results));
         displayMovies(data.results);
+
+        function displayMovies(movies) {
+            main.innerHTML=''
+            movies.forEach(
+          (movie)=>{
+              const {title,poster_path,overview}=movie
+              const moviesElement=document.createElement('div')
+                  moviesElement.classList.add('movieWrapper')
+                 moviesElement.innerHTML=`
+                     <div class="movie-posters">
+                          <img class="mainimg" src="${IMAGE_PATH} + ${poster_path}" alt="${title}">
+                     </div>
+                     <div> 
+                          <div class="movie-info">
+                          <h3>${title}</h3>
+                          <p class="sypnosis">${overview}</p>
+                          <span>${rating}</span>
+                          </div>
+                    </div>
+                                           `
+          main.appendChild(moviesElement)
+          
+          }
+            )
+            } 
+
         form.addEventListener('submit' , (e) =>{
             e.preventDefault()
             const searchValue=search.value 
@@ -53,30 +79,7 @@ getData(API_URL)
             }
           })
 
-          function displayMovies(movies) {
-            main.innerHTML=''
-            movies.forEach(
-          (movie)=>{
-              const {title,poster_path,overview}=movie
-          const moviesElement=document.createElement('div')
-          moviesElement.classList.add('movieWrapper')
-          moviesElement.innerHTML=`
-                     <div class="movie-posters">
-                          <img class="mainimg" src="${IMAGE_PATH} + ${poster_path}" alt="${title}">
-                     </div>
-                     <div> 
-                          <div class="movie-info">
-                          <h3>${title}</h3>
-                          <p class="sypnosis">${overview}</p>
-                          <span>${rating}</span>
-                          </div>
-                    </div>
-          `
-          main.appendChild(moviesElement)
-          
-          }
-            )
-            }
+         
     }  
     
   )
