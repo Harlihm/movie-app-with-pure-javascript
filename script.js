@@ -55,7 +55,7 @@ getMovies(API_URL)
             moviesElement.innerHTML=`
             
             <img class="mainimg" src="${IMAGE_PATH + poster_path}" alt="${title}">
-            <div class="originals">
+            <div class="originals hide">
             <h3>${title}</h3>
             <p class="sypnosis">${overview}</p>
             <span>RATING ${vote_average}</span>
@@ -143,7 +143,7 @@ getTrendng(requests.fetchTrending)
             
             <img class="mainimg" src="${IMAGE_PATH + poster_path}" alt="${title}">
             
-            <div class="originals">
+            <div class="originals hide">
             <h3>${title}</h3>
             <p class="sypnosis">${overview}</p>
             <span>RATING ${vote_average}</span>
