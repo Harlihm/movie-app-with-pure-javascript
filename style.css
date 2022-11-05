@@ -53,6 +53,8 @@ nav {
     overflow-x: scroll;
     overflow-y: hidden;
     padding: 15px;
+    transition: all 0.3s ease;
+    height: auto;
 }
 
 .mainimg{
@@ -66,6 +68,7 @@ nav {
 }
 .mainimg:hover, .mainimg:hover .originals{
     transform: scale(1.08);
+    transition: all 0.3s ease;
   
 
 }
@@ -78,15 +81,12 @@ nav {
 
 .originals {
 padding: 2rem;
-position:relative;
-/* left: 0; */
-/* top: 0; */
+/* position:absolute; */
 max-height: 100%;
-/* opacity:0; */
-/* transform: translateY(101%); */
+width: auto;
 display: none;
 transition: all 0.2s ease;
-
+white-space: none;
 
 }
 
@@ -98,6 +98,26 @@ transition: all 0.2s ease;
 } */
 
 .sypnosis {
-    width: 15rem;
+    width: 30rem;
 
+}
+
+h3{
+    font-size: 34px;
+    margin-bottom: 9px;
+}
+span{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.hide{
+    display: none;
+    transition: all 0.3s ease;
+}
+
+
+.show {
+    display: block;
+    transition: all 0.3s ease;
 }

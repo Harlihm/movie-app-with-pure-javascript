@@ -64,18 +64,27 @@ getMovies(API_URL)
             `
             main.appendChild(moviesElement)
             // const showDetails=document.getElementById('movie');
-            const details=document.getElementsByClassName('originals');
             var showDetails=document.querySelectorAll('#movie');
+            // var heightIncreased = document.getElementsByClassName('movie-posters');
+            // var hideothers=document.querySelectorAll('.originals')
           for (var i = 0; i < showDetails.length; i++) {
-        showDetails[i].onclick = function () {
+           
+            showDetails[i].onclick = function () {
             console.log('clicked')
-        if(this.children[1].style.display ="none"){
-          this.children[1].style.display ="block"
+        if(this.children[1].classList.contains("hide")){
+          this.children[1].classList.remove("hide");
+          this.children[1].classList.add("show");
+          
         } else{
-       
-          this.children[1].style.display ="block"
+            // document.querySelectorAll('.originals').forEach((detail) => detail.style.display="none");
+            this.children[1].classList.remove("show");
+          this.children[1].classList.add("hide");
+          heightIncreased[0].style.height = "auto";
         }
-      };
+      }; 
+        
+
+        
     };
 
         });
@@ -127,7 +136,7 @@ getTrendng(requests.fetchTrending)
         movies.forEach((movie) => {
             const {title,poster_path,vote_average,overview}= movie
             const moviesElement = document.createElement('div')
-            moviesElement.classList.add('movie')
+            moviesElement.setAttribute('id', 'movie');
             moviesElement.innerHTML=`
             
             
@@ -143,7 +152,30 @@ getTrendng(requests.fetchTrending)
             `
 
             main2.appendChild(moviesElement)
+               // const showDetails=document.getElementById('movie');
+               var showDetails=document.querySelectorAll('#movie');
+               // var heightIncreased = document.getElementsByClassName('movie-posters');
+               // var hideothers=document.querySelectorAll('.originals')
+             for (var i = 0; i < showDetails.length; i++) {
+              
+               showDetails[i].onclick = function () {
+               console.log('clicked')
+           if(this.children[1].classList.contains("hide")){
+             this.children[1].classList.remove("hide");
+             this.children[1].classList.add("show");
+    
+             
+           } else{
+               // document.querySelectorAll('.originals').forEach((detail) => detail.style.display="none");
+               this.children[1].classList.remove("show");
+             this.children[1].classList.add("hide");
           
+           }
+         }; 
+           
+   
+           
+       };
 
 
         });
