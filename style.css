@@ -23,6 +23,15 @@ nav {
     justify-content: space-between;
 
 }
+
+.banner {
+    background-size: cover;
+    background-image: url(https://image.tmdb.org/t/p/original//Ab8mkHmkYADjU7wQiOkia9BzGvS.jpg);
+    background-position: center center;
+    color: #fff;
+    height: 448px;
+    object-fit: contain;
+}
 .search{
     background-color:rgba(255, 255, 255, 0.318);
     border: white solid 1px;
@@ -55,8 +64,10 @@ nav {
     /* width: 100%; */
     transition: transform 0.45s ease 0s, -webkit-transform 0.45s ease 0s;
 }
-.mainimg:hover{
+.mainimg:hover, .mainimg:hover .originals{
     transform: scale(1.08);
+  
+
 }
 .movie-info {
 
@@ -66,5 +77,26 @@ nav {
 }
 
 .originals {
-    display: none;
+padding: 2rem;
+/* position: absolute; */
+left: 0;
+top: 0;
+max-height: 100%;
+/* transform: translateY(101%);
+display: none; */
+transition: all 0.2s ease;
+
+
 }
+/* 
+.movie:hover .originals{
+    transform: translateY(0);
+    display: block;
+} */
+
+.sypnosis {
+    width: 15rem;
+}
+/* .mainimg:hover .originals{
+display: block;
+} */
