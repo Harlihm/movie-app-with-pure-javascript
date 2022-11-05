@@ -20,7 +20,7 @@ const IMAGE_PATH = "https://image.tmdb.org/t/p/w1280/";
         const search=document.getElementById('search');
         const main=document.getElementById('main');
         const main2=document.getElementById('main2');
-        var imgclick=document.getElementsByClassName('movie');
+        // const showDetails=document.getElementById('movie');
 
       
 
@@ -40,13 +40,17 @@ getMovies(API_URL)
     data =>
      {
       
+      
       displayMovies(data.results)
+      
+    
       function displayMovies(movies) {
         main.innerHTML=''
         movies.forEach((movie) => {
             const {title,poster_path,vote_average,overview}= movie
             const moviesElement = document.createElement('div')
-            moviesElement.classList.add('movie')
+            moviesElement.setAttribute('id', 'movie');
+
             moviesElement.innerHTML=`
             
             <img class="mainimg" src="${IMAGE_PATH + poster_path}" alt="${title}">
@@ -58,11 +62,29 @@ getMovies(API_URL)
           
            
             `
-
             main.appendChild(moviesElement)
+            // const showDetails=document.getElementById('movie');
+            const details=document.getElementsByClassName('originals');
+            var showDetails=document.querySelectorAll('#movie');
+          for (var i = 0; i < showDetails.length; i++) {
+        showDetails[i].onclick = function () {
+            console.log('clicked')
+        if(this.children[1].style.display ="none"){
+          this.children[1].style.display ="block"
+        } else{
+       
+          this.children[1].style.display ="block"
+        }
+      };
+    };
 
         });
+
+       
+       
        }
+
+  
 
      
 
@@ -77,11 +99,6 @@ getMovies(API_URL)
             }
           })
 
-          
-          imgclick.addEventListener('click', ()=>{
-            console.log("clicked")
-             
-           })
          
     }  
     
@@ -89,7 +106,7 @@ getMovies(API_URL)
   .catch (err => ('rejected', err.message));
 
 
-  const getTrendng = async (url) => {
+const getTrendng = async (url) => {
 const response = await fetch(url)
 const data = await response.json();
 
@@ -113,7 +130,9 @@ getTrendng(requests.fetchTrending)
             moviesElement.classList.add('movie')
             moviesElement.innerHTML=`
             
+            
             <img class="mainimg" src="${IMAGE_PATH + poster_path}" alt="${title}">
+            
             <div class="originals">
             <h3>${title}</h3>
             <p class="sypnosis">${overview}</p>
@@ -124,11 +143,12 @@ getTrendng(requests.fetchTrending)
             `
 
             main2.appendChild(moviesElement)
+          
+
 
         });
        }
-
-    
+      
          
     }  
     

@@ -78,25 +78,26 @@ nav {
 
 .originals {
 padding: 2rem;
-/* position: absolute; */
-left: 0;
-top: 0;
+position:relative;
+/* left: 0; */
+/* top: 0; */
 max-height: 100%;
-/* transform: translateY(101%);
-display: none; */
+/* opacity:0; */
+/* transform: translateY(101%); */
+display: none;
 transition: all 0.2s ease;
 
 
 }
-/* 
-.movie:hover .originals{
+
+/* .movie:hover .originals{
     transform: translateY(0);
     display: block;
+    position: relative;
+    opacity: 100;
 } */
 
 .sypnosis {
     width: 15rem;
+
 }
-/* .mainimg:hover .originals{
-display: block;
-} */
