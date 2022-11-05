@@ -26,7 +26,7 @@ nav {
 
 .banner {
     background-size: cover;
-    background-image: url(https://image.tmdb.org/t/p/original//Ab8mkHmkYADjU7wQiOkia9BzGvS.jpg);
+    /* background-image: url(https://image.tmdb.org/t/p/original//Ab8mkHmkYADjU7wQiOkia9BzGvS.jpg); */
     background-position: center center;
     color: #fff;
     height: 448px;

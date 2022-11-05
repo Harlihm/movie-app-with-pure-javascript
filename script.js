@@ -20,7 +20,8 @@ const IMAGE_PATH = "https://image.tmdb.org/t/p/w1280/";
         const search=document.getElementById('search');
         const main=document.getElementById('main');
         const main2=document.getElementById('main2');
-        // const showDetails=document.getElementById('movie');
+        const head=document.querySelector('.banner');
+
 
       
 
@@ -63,23 +64,23 @@ getMovies(API_URL)
            
             `
             main.appendChild(moviesElement)
-            // const showDetails=document.getElementById('movie');
+        
             var showDetails=document.querySelectorAll('#movie');
-            // var heightIncreased = document.getElementsByClassName('movie-posters');
-            // var hideothers=document.querySelectorAll('.originals')
+           
           for (var i = 0; i < showDetails.length; i++) {
            
             showDetails[i].onclick = function () {
             console.log('clicked')
-        if(this.children[1].classList.contains("hide")){
-          this.children[1].classList.remove("hide");
-          this.children[1].classList.add("show");
-          
-        } else{
-            // document.querySelectorAll('.originals').forEach((detail) => detail.style.display="none");
-            this.children[1].classList.remove("show");
-          this.children[1].classList.add("hide");
-          heightIncreased[0].style.height = "auto";
+            if(this.children[1].classList.contains("hide")){
+              this.children[1].classList.remove("hide");
+              this.children[1].classList.add("show");
+             
+              
+            } else{
+                // document.querySelectorAll('.originals').forEach((detail) => detail.style.display="none");
+                this.children[1].classList.remove("show");
+              this.children[1].classList.add("hide");
+        
         }
       }; 
         
@@ -151,24 +152,21 @@ getTrendng(requests.fetchTrending)
            
             `
 
-            main2.appendChild(moviesElement)
-               // const showDetails=document.getElementById('movie');
-               var showDetails=document.querySelectorAll('#movie');
-               // var heightIncreased = document.getElementsByClassName('movie-posters');
-               // var hideothers=document.querySelectorAll('.originals')
+            main2.appendChild(moviesElement)  
+                        var showDetails=document.querySelectorAll('#movie');
              for (var i = 0; i < showDetails.length; i++) {
               
                showDetails[i].onclick = function () {
                console.log('clicked')
-           if(this.children[1].classList.contains("hide")){
-             this.children[1].classList.remove("hide");
-             this.children[1].classList.add("show");
-    
-             
-           } else{
-               // document.querySelectorAll('.originals').forEach((detail) => detail.style.display="none");
-               this.children[1].classList.remove("show");
-             this.children[1].classList.add("hide");
+               if(this.children[1].classList.contains("hide")){
+                this.children[1].classList.remove("hide");
+                this.children[1].classList.add("show");
+               
+                
+              } else{
+                  // document.querySelectorAll('.originals').forEach((detail) => detail.style.display="none");
+                  this.children[1].classList.remove("show");
+                this.children[1].classList.add("hide");
           
            }
          }; 
@@ -182,7 +180,7 @@ getTrendng(requests.fetchTrending)
        }
       
          
-    }  
+       }  
     
   )
   .catch (err => ('rejected', err.message));
@@ -191,5 +189,28 @@ getTrendng(requests.fetchTrending)
   
 
 
+  const getBanner = async (url) => {
+    var response = await fetch(url)
+    const data = await response.json();
+     return data;
+    
+    
+    };
 
+    getBanner(requests.fetchActionMovies)
+    .then(
+      data=> {
+  
+        const randomNumber = Math.floor(Math.random() * data.results.length -1)
+        console.log(randomNumber)
+    
+        
+        head.style.backgroundImage = `url('${IMAGE_PATH + data.results[randomNumber].poster_path}')`
+ 
+       
+
+      
+
+      }
+    );
 
