@@ -17,17 +17,16 @@ const SEARCH_URL = 'https://api.themoviedb.org/3/search/movie?sort_by=popularity
 const IMAGE_PATH = "https://image.tmdb.org/t/p/w1280/";
 
 
-const form=document.getElementById('form');
-const search=document.getElementById('search');
-const main=document.getElementById('main');
+        const form=document.getElementById('form');
+        const search=document.getElementById('search');
+        const main=document.getElementById('main');
+        const main2=document.getElementById('mainII');
 
 
 
-const getMovies = async (url) => {
-const response = await fetch(url);
-if (response.status !== 200){
-    throw new Error('cannot fetch the data')
-}
+const getMovies = async () => {
+    let url = API_URL
+const response = await fetch(`https://api.themoviedb.org/3//discover/tv?api_key=${API_KEY}&with_networks=213`)
 const data = await response.json();
 
 return data;
@@ -36,40 +35,53 @@ return data;
 };
 
 
-getMovies(API_URL)
+getMovies()
   .then ( 
-    data => {
-        console.log(data.results);
-        console.log(displayMovies(data.results));
-        displayMovies(data.results);
-
-        function displayMovies(movies) {
+    data =>
+     {
+      displayMovies(data.results)
+      displayMoviesInfo(data.results)
+      function displayMovies(movies) {
+        main.innerHTML=''
+        movies.forEach((movie) => {
+            const {title,poster_path,vote_average,overview}= movie
+            const moviesElement = document.createElement('div')
+            moviesElement.classList.add('movie')
+            moviesElement.innerHTML=`
             
-            movies.forEach(
-          (movie)=>{
-              const {title,poster_path,overview}=movie
-           let displayMovies =`
-                     <div class="movie-posters">
-                          <img class="mainimg" src="${IMAGE_PATH} + ${poster_path}" alt="${title}">
-                     </div>
-                     <div> 
-                          <div class="movie-info">
-                          <h3>${title}</h3>
-                          <p class="sypnosis">${overview}</p>
-                          <span>${rating} xyz </span>
-                          </div>
-                    </div>            `
-             main.innerHTML=displayMovies
-          
-          }
-            )
-            } 
+            <img class="mainimg" src="${IMAGE_PATH + poster_path}" alt="${title}">
+           
+            `
+            main.appendChild(moviesElement)
+            
+        });
+       }
+       function displayMoviesInfo(movies) {
+        main2.innerHTML=''
+        movies.forEach((movie) => {
+            const {title,poster_path,vote_average,overview}= movie
+            const moviesElement = document.createElement('div')
+            moviesElement.classList.add('movie')
+            moviesElement.innerHTML=`
+            
+           <div class="originals">
+           <h3>${title}</h3>
+           <p class="sypnosis">t${overview}</p>
+           <span> ${vote_average}</span>
+           </div>
+         
+           
+            `
+            main2.appendChild(moviesElement)
+            
+        });
+       }
 
         form.addEventListener('submit' , (e) =>{
             e.preventDefault()
             const searchValue=search.value 
             if(searchValue && searchValue !==''){
-                getData(SEARCH_URL+searchValue)
+                getMovies(SEARCH_URL+searchValue)
                 searchValue=''
             } else{
                 window.location.reload()
