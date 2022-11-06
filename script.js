@@ -22,6 +22,72 @@ const main = document.getElementById("main");
 const main2 = document.getElementById("main2");
 const head = document.querySelector(".banner");
 const bannerContent = document.getElementById("banner__content");
+const results=document.getElementById('searchResults');
+
+
+
+
+getResult(API_URL)
+async function getResult(url){
+    const res = await fetch (url)
+    const data =await res.json()
+    console.log(data.results);
+    displayResult(data.results)
+    function displayResult(movies) {
+        results.innerHTML=''
+        movies.forEach((movie) => {
+            const {title,poster_path,overview}= movie
+            const moviesElement = document.createElement('div')
+            moviesElement.classList.add('movieResult')
+            moviesElement.innerHTML=`
+            <img class="mainimg" src="${IMAGE_PATH + poster_path}" alt="${title}">
+            <div class="movie-info hide">
+                <h3 class="rTitle">${title}</h3>
+                <span>9.7</span>
+                <div class="overview">
+                    <H3 class="rOverview">${overview}</H3>
+                </div>
+            </div>
+            `
+            results.appendChild(moviesElement)
+            
+        });
+       }
+    
+    
+      form.addEventListener('submit' , (e) =>{
+                e.preventDefault()
+                const searchValue=search.value 
+                if(searchValue && searchValue !==''){
+                    getResult(SEARCH_URL+searchValue)
+                    // searchValue=''
+                } else{
+                    window.location.reload()
+                }
+    
+                results.style.display="flex";
+                document.getElementById('default').style.display='none';
+              })
+              var showDetails = document.querySelectorAll(".movieResult");
+
+              for (var i = 0; i < showDetails.length; i++) {
+                showDetails[i].onclick = function () {
+                  console.log("clicked");
+                  if (this.children[1].classList.contains("hide")) {
+                    this.children[1].classList.remove("hide");
+                    this.children[1].classList.add("show");
+                  } else {
+                    // document.querySelectorAll('.originals').forEach((detail) => detail.style.display="none");
+                    this.children[1].classList.remove("show");
+                    this.children[1].classList.add("hide");
+                  }
+                };
+              }
+              
+}
+
+
+
 
 const getMovies = async () => {
   let url = API_URL;
@@ -74,17 +140,6 @@ getMovies(API_URL)
         }
       });
     }
-
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const searchValue = search.value;
-      if (searchValue && searchValue !== "") {
-        getMovies(SEARCH_URL + searchValue);
-        searchValue = "";
-      } else {
-        window.location.reload();
-      }
-    });
   })
   .catch((err) => ("rejected", err.message));
 
