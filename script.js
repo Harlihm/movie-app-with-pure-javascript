@@ -20,6 +20,12 @@ const form = document.getElementById("form");
 const search = document.getElementById("search");
 const main = document.getElementById("main");
 const main2 = document.getElementById("main2");
+const main3 = document.getElementById("main3");
+const main4 = document.getElementById("main4");
+const main5 = document.getElementById("main5");
+const main6 = document.getElementById("main6");
+const main7 = document.getElementById("main7");
+const main8 = document.getElementById("main8");
 const head = document.querySelector(".banner");
 const bannerContent = document.getElementById("banner__content");
 const results=document.getElementById('searchResults');
@@ -253,3 +259,331 @@ getBanner(requests.fetchActionMovies).then((data) => {
 
     
 });
+
+const getTopRated = async (url) => {
+  
+  const response = await fetch(url);
+  const data = await response.json();
+
+  return data;
+};
+
+getTopRated(requests.fetchTopRated)
+  .then((data) => {
+    displayMovies(data.results);
+
+    function displayMovies(movies) {
+      main3.innerHTML = "";
+      movies.forEach((movie) => {
+        const { title, poster_path, vote_average, overview } = movie;
+        const moviesElement = document.createElement("div");
+        moviesElement.setAttribute("id", "movie");
+
+        moviesElement.innerHTML = `
+            
+            <img class="mainimg" src="${
+              IMAGE_PATH + poster_path
+            }" alt="${title}">
+            <div class="originals hide">
+            <h3>${title}</h3>
+            <p class="sypnosis">${overview}</p>
+            <span>RATING ${vote_average}</span>
+            </div>
+          
+           
+            `;
+        main3.appendChild(moviesElement);
+
+        var showDetails = document.querySelectorAll("#movie");
+
+        for (var i = 0; i < showDetails.length; i++) {
+          showDetails[i].onclick = function () {
+            console.log("clicked");
+            if (this.children[1].classList.contains("hide")) {
+              this.children[1].classList.remove("hide");
+              this.children[1].classList.add("show");
+            } else {
+              // document.querySelectorAll('.originals').forEach((detail) => detail.style.display="none");
+              this.children[1].classList.remove("show");
+              this.children[1].classList.add("hide");
+            }
+          };
+        }
+      });
+    }
+  })
+  .catch((err) => ("rejected", err.message));
+
+  
+const getAction = async (url) => {
+
+  const response = await fetch(url);
+  const data = await response.json();
+
+  return data;
+};
+
+getAction(requests.fetchActionMovies)
+  .then((data) => {
+    displayMovies(data.results);
+
+    function displayMovies(movies) {
+      main4.innerHTML = "";
+      movies.forEach((movie) => {
+        const { title, poster_path, vote_average, overview } = movie;
+        const moviesElement = document.createElement("div");
+        moviesElement.setAttribute("id", "movie");
+
+        moviesElement.innerHTML = `
+            
+            <img class="mainimg" src="${
+              IMAGE_PATH + poster_path
+            }" alt="${title}">
+            <div class="originals hide">
+            <h3>${title}</h3>
+            <p class="sypnosis">${overview}</p>
+            <span>RATING ${vote_average}</span>
+            </div>
+          
+           
+            `;
+        main4.appendChild(moviesElement);
+
+        var showDetails = document.querySelectorAll("#movie");
+
+        for (var i = 0; i < showDetails.length; i++) {
+          showDetails[i].onclick = function () {
+            console.log("clicked");
+            if (this.children[1].classList.contains("hide")) {
+              this.children[1].classList.remove("hide");
+              this.children[1].classList.add("show");
+            } else {
+              // document.querySelectorAll('.originals').forEach((detail) => detail.style.display="none");
+              this.children[1].classList.remove("show");
+              this.children[1].classList.add("hide");
+            }
+          };
+        }
+      });
+    }
+  })
+  .catch((err) => ("rejected", err.message));
+
+  
+const getComedy = async (url) => {
+
+  const response = await fetch(url);
+  const data = await response.json();
+
+  return data;
+};
+
+getComedy(requests.fetchComedyMovies)
+  .then((data) => {
+    displayMovies(data.results);
+
+    function displayMovies(movies) {
+      main5.innerHTML = "";
+      movies.forEach((movie) => {
+        const { title, poster_path, vote_average, overview } = movie;
+        const moviesElement = document.createElement("div");
+        moviesElement.setAttribute("id", "movie");
+
+        moviesElement.innerHTML = `
+            
+            <img class="mainimg" src="${
+              IMAGE_PATH + poster_path
+            }" alt="${title}">
+            <div class="originals hide">
+            <h3>${title}</h3>
+            <p class="sypnosis">${overview}</p>
+            <span>RATING ${vote_average}</span>
+            </div>
+          
+           
+            `;
+        main5.appendChild(moviesElement);
+
+        var showDetails = document.querySelectorAll("#movie");
+
+        for (var i = 0; i < showDetails.length; i++) {
+          showDetails[i].onclick = function () {
+            console.log("clicked");
+            if (this.children[1].classList.contains("hide")) {
+              this.children[1].classList.remove("hide");
+              this.children[1].classList.add("show");
+            } else {
+              // document.querySelectorAll('.originals').forEach((detail) => detail.style.display="none");
+              this.children[1].classList.remove("show");
+              this.children[1].classList.add("hide");
+            }
+          };
+        }
+      });
+    }
+  })
+  .catch((err) => ("rejected", err.message));
+
+  
+const getHorror = async (url) => {
+  
+  const response = await fetch(url);
+  const data = await response.json();
+
+  return data;
+};
+
+getHorror(requests.fetchHorrorMovies)
+  .then((data) => {
+    displayMovies(data.results);
+
+    function displayMovies(movies) {
+      main6.innerHTML = "";
+      movies.forEach((movie) => {
+        const { title, poster_path, vote_average, overview } = movie;
+        const moviesElement = document.createElement("div");
+        moviesElement.setAttribute("id", "movie");
+
+        moviesElement.innerHTML = `
+            
+            <img class="mainimg" src="${
+              IMAGE_PATH + poster_path
+            }" alt="${title}">
+            <div class="originals hide">
+            <h3>${title}</h3>
+            <p class="sypnosis">${overview}</p>
+            <span>RATING ${vote_average}</span>
+            </div>
+          
+           
+            `;
+        main6.appendChild(moviesElement);
+
+        var showDetails = document.querySelectorAll("#movie");
+
+        for (var i = 0; i < showDetails.length; i++) {
+          showDetails[i].onclick = function () {
+            console.log("clicked");
+            if (this.children[1].classList.contains("hide")) {
+              this.children[1].classList.remove("hide");
+              this.children[1].classList.add("show");
+            } else {
+              // document.querySelectorAll('.originals').forEach((detail) => detail.style.display="none");
+              this.children[1].classList.remove("show");
+              this.children[1].classList.add("hide");
+            }
+          };
+        }
+      });
+    }
+  })
+  .catch((err) => ("rejected", err.message));
+
+  
+const getRomance= async (url) => {
+ 
+  const response = await fetch(url);
+  const data = await response.json();
+
+  return data;
+};
+
+getRomance(requests.fetchRomanceMovies)
+  .then((data) => {
+    displayMovies(data.results);
+
+    function displayMovies(movies) {
+      main7.innerHTML = "";
+      movies.forEach((movie) => {
+        const { title, poster_path, vote_average, overview } = movie;
+        const moviesElement = document.createElement("div");
+        moviesElement.setAttribute("id", "movie");
+
+        moviesElement.innerHTML = `
+            
+            <img class="mainimg" src="${
+              IMAGE_PATH + poster_path
+            }" alt="${title}">
+            <div class="originals hide">
+            <h3>${title}</h3>
+            <p class="sypnosis">${overview}</p>
+            <span>RATING ${vote_average}</span>
+            </div>
+          
+           
+            `;
+        main7.appendChild(moviesElement);
+
+        var showDetails = document.querySelectorAll("#movie");
+
+        for (var i = 0; i < showDetails.length; i++) {
+          showDetails[i].onclick = function () {
+            console.log("clicked");
+            if (this.children[1].classList.contains("hide")) {
+              this.children[1].classList.remove("hide");
+              this.children[1].classList.add("show");
+            } else {
+              // document.querySelectorAll('.originals').forEach((detail) => detail.style.display="none");
+              this.children[1].classList.remove("show");
+              this.children[1].classList.add("hide");
+            }
+          };
+        }
+      });
+    }
+  })
+  .catch((err) => ("rejected", err.message));
+
+  
+const getDoc = async (url) => {
+  const response = await fetch(url);
+  const data = await response.json();
+
+  return data;
+};
+
+getDoc(requests.fetchDocumentaries)
+  .then((data) => {
+    displayMovies(data.results);
+
+    function displayMovies(movies) {
+      main8.innerHTML = "";
+      movies.forEach((movie) => {
+        const { title, poster_path, vote_average, overview } = movie;
+        const moviesElement = document.createElement("div");
+        moviesElement.setAttribute("id", "movie");
+
+        moviesElement.innerHTML = `
+            
+            <img class="mainimg" src="${
+              IMAGE_PATH + poster_path
+            }" alt="${title}">
+            <div class="originals hide">
+            <h3>${title}</h3>
+            <p class="sypnosis">${overview}</p>
+            <span>RATING ${vote_average}</span>
+            </div>
+          
+           
+            `;
+        main8.appendChild(moviesElement);
+
+        var showDetails = document.querySelectorAll("#movie");
+
+        for (var i = 0; i < showDetails.length; i++) {
+          showDetails[i].onclick = function () {
+            console.log("clicked");
+            if (this.children[1].classList.contains("hide")) {
+              this.children[1].classList.remove("hide");
+              this.children[1].classList.add("show");
+            } else {
+              // document.querySelectorAll('.originals').forEach((detail) => detail.style.display="none");
+              this.children[1].classList.remove("show");
+              this.children[1].classList.add("hide");
+            }
+          };
+        }
+      });
+    }
+  })
+  .catch((err) => ("rejected", err.message));
